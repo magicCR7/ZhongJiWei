@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  PublicViewController.h
 //  ZhongJiWei
 //
 //  Created by Mc on 2018/12/4.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface PublicViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
