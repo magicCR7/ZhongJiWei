@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainNewsViewController.h"
+#import "ThemeManage.h"
+#import "UINavigationBar+ThemeChange.h"
 
 @interface AppDelegate ()
 
@@ -17,10 +19,14 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // 获取夜间模式状态
+    [ThemeManage shareThemeManage].isNight = [[NSUserDefaults standardUserDefaults] boolForKey:@"night"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     MainNewsViewController *mainNewsVc = [[MainNewsViewController alloc] init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainNewsVc];
     self.window.rootViewController = nav;
+//    [nav.navigationBar changeColor];
     [self.window makeKeyAndVisible];
     
     return YES;

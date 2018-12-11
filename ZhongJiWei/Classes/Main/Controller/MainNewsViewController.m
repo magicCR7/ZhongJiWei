@@ -11,14 +11,26 @@
 #import "RightViewController.h"
 #import "LySegmentMenu.h"
 #import "ImportNewsViewController.h"
+#import "ChannelViewController.h"
+#import "ThemeManage.h"
+#import "UIView+ThemeChange.h"
+#import "UINavigationBar+ThemeChange.h"
+#import <WebKit/WebKit.h>
 
-@interface MainNewsViewController ()
+
+@interface MainNewsViewController ()<WKNavigationDelegate>
 
 @property (nonatomic, strong) UIWindow *leftWindow;
 @property (nonatomic, strong) UIWindow *rightWindow;
+@property (nonatomic, strong) UIWindow *channelWindow;
 @property (nonatomic, strong) NSMutableArray *vcViewArray;
 @property (nonatomic, strong) LySegmentMenu *segmentMenu;
 @property (nonatomic, strong) NSArray *titleArray;
+@property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) NSArray *webUrlArray;
+
+@property (weak, nonatomic) WKWebView *webView;
+
 
 @end
 
@@ -28,7 +40,8 @@
     [super viewDidLoad];
     [self setupNavBar];
     [self setupViews];
-
+    [self.navigationController.navigationBar NightWithType:UIViewColorTypeNormal];
+    _webUrlArray = [[NSArray alloc] initWithObjects:@"",@"http://m.ccdi.gov.cn/xxgk/ldjg.html",@"http://www.ccdi.gov.cn/fgk/index",@"https://www.12388.gov.cn/m",@"https://www.baidu.com", nil];
 }
 
 //设置导航条
@@ -44,14 +57,16 @@
     //左上方更多
     UIButton * leftBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     leftBtn.frame = CGRectMake(0, 0, 20,20);
-    [leftBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
+    UIImage *barBtnImage = [ThemeManage shareThemeManage].isNight ? [UIImage imageNamed:@"setting"] : [UIImage imageNamed:@"more"];
+    [leftBtn setBackgroundImage:barBtnImage forState:UIControlStateNormal];
+//    [leftBtn setBackgroundImage:[UIImage imageNamed:@"more"] forState:UIControlStateNormal];
     [leftBtn addTarget:self action:@selector(showLeftWindow) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:leftBtn];
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav-img"]];
 }
 
 - (void)setupViews {
-    self.titleArray = [[NSArray alloc] initWithObjects:@"要闻",@"党风",@"审查查调查",@"访谈",@"观点",@"巡视巡查",@"阅微",@"图说",@"专题", nil];
+    self.titleArray = [[NSArray alloc] initWithObjects:@"要闻",@"党风",@"审查调查",@"访谈",@"观点",@"巡视巡查",@"阅微",@"图说",@"专题", nil];
     self.vcViewArray = [[NSMutableArray alloc] init];
     for (int i = 0; i<self.titleArray.count; i++) {
         ImportNewsViewController *newsVc = [[ImportNewsViewController alloc]init];
@@ -65,7 +80,31 @@
                                                 TitleArray:self.titleArray
                                            MaxShowTitleNum:5];
     [self.view addSubview:self.segmentMenu];
-//    self.view.backgroundColor = [UIColor yellowColor];
+    
+    _addButton = [UIButton new];
+    _addButton.backgroundColor = DominantGrayColor;
+    [_addButton addTarget:self action:@selector(addButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_addButton setTitle:@"+" forState:UIControlStateNormal];
+    _addButton.titleEdgeInsets = UIEdgeInsetsMake(5, 10, 10, 0);
+    _addButton.titleLabel.font = [UIFont systemFontOfSize:30];
+    [self.view addSubview:_addButton];
+    [self.addButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.offset(0);
+        make.top.offset(Statusbar_Height+Nav_Height);
+        make.height.width.equalTo(@44);
+    }];
+    
+    //WebView
+    WKWebView *webV = [[WKWebView alloc] init];
+    webV.hidden = YES;
+    [self.view addSubview:webV];
+    
+    webV.navigationDelegate = self;
+    self.webView = webV;
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
 }
 
 - (void)showLeftWindow {
@@ -88,6 +127,18 @@
     __weak typeof(self) weakSelf = self;
     leftVc.viewDismissBlock = ^{
         [weakSelf dismissLeftWindow];
+    };
+    leftVc.showWebBlock = ^(NSInteger row) {
+        [weakSelf dismissLeftWindow];
+        if (row == 0) {
+            self.webView.hidden = YES;
+        } else {
+            self.webView.hidden = NO;
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@",weakSelf.webUrlArray[row]]];
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [weakSelf.webView loadRequest:request];
+
+        }
     };
 }
 
@@ -136,6 +187,35 @@
         self.rightWindow = nil;
         
     }];
+}
+
+- (void)addButtonClicked:(UIButton *)sender {
+    ChannelViewController *channalVc = [[ChannelViewController alloc] init];
+    self.channelWindow = [[UIWindow alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    self.channelWindow.windowLevel = UIWindowLevelAlert-10;
+    self.channelWindow.layer.masksToBounds = YES;
+    self.channelWindow.hidden=NO;
+    self.channelWindow.rootViewController = channalVc;
+    [UIView animateWithDuration:0.3 delay:0.0f options:UIViewAnimationOptionCurveEaseOut animations:^{
+        channalVc.view.backgroundColor = RGB(0, 0, 0, 0.5);
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    channalVc.viewDismissBlock = ^{
+        [weakSelf dismissChannalWindow];
+    };
+}
+
+- (void)dismissChannalWindow {
+    UIViewController *vc=self.channelWindow.rootViewController;
+//    [UIView animateWithDuration:3.0 animations:^{
+        vc.view.backgroundColor = RGB(0, 0, 0, 0.1);
+//    } completion:^(BOOL finished) {
+        self.channelWindow.hidden = YES;
+        self.channelWindow = nil;
+//    }];
 }
 
 @end

@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *rightButton;
 @property (nonatomic, strong) UISwitch *rightSwitch;
 
+@property(nonatomic, copy)void(^switchValueChanged)(void);
+
 @end
 
 NS_ASSUME_NONNULL_END

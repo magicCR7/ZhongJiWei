@@ -71,15 +71,16 @@
         make.width.greaterThanOrEqualTo(@51);
     }];
     
-    self.rightSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
-    self.rightSwitch.onTintColor = DominantColor;
-    self.rightSwitch.hidden = YES;
-    self.rightSwitch.layer.borderColor = [UIColor grayColor].CGColor;
-    self.rightSwitch.layer.borderWidth = 1.0f;
-    self.rightSwitch.layer.masksToBounds = YES;
-    self.rightSwitch.layer.cornerRadius = 15.5f;
-    [self.rightSwitch addTarget:self action:@selector(swicthValueChange:) forControlEvents:UIControlEventValueChanged];
-    [self.contentView addSubview:self.rightSwitch];
+    UISwitch *rightSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+    rightSwitch.onTintColor = DominantColor;
+    rightSwitch.hidden = YES;
+    rightSwitch.layer.borderColor = [UIColor grayColor].CGColor;
+    rightSwitch.layer.borderWidth = 1.0f;
+    rightSwitch.layer.masksToBounds = YES;
+    rightSwitch.layer.cornerRadius = 15.5f;
+    [rightSwitch addTarget:self action:@selector(swicthValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.contentView addSubview:rightSwitch];
+    self.rightSwitch = rightSwitch;
     [self.rightSwitch mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.right.offset(-25);
@@ -93,8 +94,10 @@
     // Configure the view for the selected state
 }
 
-- (void)swicthValueChange:(UISwitch *)sender {
-    
+- (void)swicthValueChanged:(UISwitch *)sender {
+    if (self.switchValueChanged) {
+        self.switchValueChanged();
+    }
 }
 
 @end

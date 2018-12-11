@@ -21,6 +21,7 @@
 
 #define DominantColor RGB(179, 11, 17, 1)      //程序主色调 #3F78D9
 #define DominantGrayColor RGB(232, 232, 232, 1)     //程序灰色调 #868E97
+#define DominantNightColor RGB(16, 24, 54, 1)      //程序夜间模式主色调 #3F78D9
 #define lineColor RGB(96, 96, 96, 0.2)  //分割线背景色
 
 #define IOS8 [[[UIDevice currentDevice]systemVersion] floatValue] >= 8.0
@@ -39,9 +40,12 @@
 //TabBar高度
 #define TabBar_Height (self.tabBarController.tabBar.bounds.size.height)
 
+//Seg高度
+#define Seg_Height 44
+
 #import "Masonry.h"
 //#import "UIView+Frame.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 //#import <SVProgressHUD.h>
-
+#import "ThemeManage.h"
 #endif /* mainPch_pch */

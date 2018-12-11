@@ -8,6 +8,7 @@
 
 #import "ImportNewsViewController.h"
 #import "TopScrollView.h"
+#import "MainNewsTableViewCell.h"
 
 @interface ImportNewsViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -34,11 +35,9 @@
     self.mainTableView = mainTableV;
     [self.mainTableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.offset(0);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-Nav_Height-Statusbar_Height);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-Seg_Height);
     }];
     
-    TopScrollView *view = [[TopScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT-Nav_Height-Statusbar_Height)/2)];
-    [self.view addSubview:view];
 }
 
 #pragma mark - tableViewDelegate
@@ -60,5 +59,13 @@
     return 10;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"MainNewsTableViewCell";
+    MainNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (!cell) {
+        cell = [[MainNewsTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+    }
+    return cell;
+}
 
 @end

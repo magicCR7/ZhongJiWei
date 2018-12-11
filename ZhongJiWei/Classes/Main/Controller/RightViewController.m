@@ -8,6 +8,8 @@
 
 #import "RightViewController.h"
 #import "RightWindowTableViewCell.h"
+#import "ThemeManage.h"
+//#import "UIView+ThemeChange.h"
 
 @interface RightViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
-    
+//    [self.view NightWithType:UIViewColorTypeNormal];
 }
 
 - (void)setupViews {
@@ -81,6 +83,7 @@
     static NSString *ID = @"RightWindowTableViewCell";
     RightWindowTableViewCell *cell = [[RightWindowTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
     cell.backgroundColor = DominantGrayColor;
     switch (indexPath.row) {
         case 0: {
@@ -97,6 +100,8 @@
             break;
         case 2: {
             cell.rightSwitch.hidden = NO;
+            cell.rightSwitch.tag = 01;
+            [cell.rightSwitch setOn:[ThemeManage shareThemeManage].isNight];
             cell.textLabel.text = @"护眼模式";
         }
             break;
@@ -116,7 +121,30 @@
         default:
             break;
     }
+    //switch
+    __weak typeof(RightWindowTableViewCell *) weakCell = cell;
+    cell.switchValueChanged = ^{
+        if (weakCell.rightSwitch.tag == 01) {
+            if (weakCell.rightSwitch.on) {
+                [ThemeManage shareThemeManage].isNight = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"changeColor" object:nil];
+                [[NSUserDefaults standardUserDefaults] setBool:[ThemeManage shareThemeManage].isNight forKey:@"night"];
+                
+            } else {
+                [ThemeManage shareThemeManage].isNight = NO;
+                [[NSUserDefaults standardUserDefaults] setBool:[ThemeManage shareThemeManage].isNight forKey:@"night"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"changeColor" object:nil];
+
+            }
+        }
+    };
     return cell;
+}
+
+#pragma mark - 移除监听
+- (void)dealloc {
+    // 移除监听
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)dismiss {
@@ -125,5 +153,7 @@
         self.viewDismissBlock();
     }
 }
+
+
 
 @end

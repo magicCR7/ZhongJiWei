@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C18D95621BE3A96006CFDD7 /* UITableViewCell+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18D95521BE3A96006CFDD7 /* UITableViewCell+ThemeChange.m */; };
+		4C18D95A21BE41EB006CFDD7 /* UINavigationBar+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18D95921BE41EB006CFDD7 /* UINavigationBar+ThemeChange.m */; };
+		4C18D97321BF5309006CFDD7 /* UIButton+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18D97221BF5309006CFDD7 /* UIButton+ThemeChange.m */; };
+		4C18D97621BF61C9006CFDD7 /* UILabel+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C18D97521BF61C9006CFDD7 /* UILabel+ThemeChange.m */; };
+		4C2CA55721BA4AC7002407CA /* ThemeManage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CA55621BA4AC7002407CA /* ThemeManage.m */; };
+		4C2CA55A21BA5447002407CA /* UIView+ThemeChange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C2CA55921BA5447002407CA /* UIView+ThemeChange.m */; };
+		4C41D84921B9250E00988A99 /* ChannelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C41D84821B9250E00988A99 /* ChannelViewController.m */; };
 		4C6C739421B7C0080037751F /* NSString+CalculateFontSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C738D21B7C0080037751F /* NSString+CalculateFontSize.m */; };
 		4C6C739521B7C0080037751F /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C738F21B7C0080037751F /* UIColor+Hex.m */; };
 		4C6C739621B7C0080037751F /* HeaderToolScrollBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C6C739221B7C0080037751F /* HeaderToolScrollBar.m */; };
@@ -50,6 +57,20 @@
 
 /* Begin PBXFileReference section */
 		22F44410A0EF50B0AC9DE930 /* Pods-ZhongJiWei.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZhongJiWei.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZhongJiWei/Pods-ZhongJiWei.debug.xcconfig"; sourceTree = "<group>"; };
+		4C18D95421BE3A96006CFDD7 /* UITableViewCell+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+ThemeChange.h"; sourceTree = "<group>"; };
+		4C18D95521BE3A96006CFDD7 /* UITableViewCell+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+ThemeChange.m"; sourceTree = "<group>"; };
+		4C18D95821BE41EB006CFDD7 /* UINavigationBar+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+ThemeChange.h"; sourceTree = "<group>"; };
+		4C18D95921BE41EB006CFDD7 /* UINavigationBar+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+ThemeChange.m"; sourceTree = "<group>"; };
+		4C18D97121BF5309006CFDD7 /* UIButton+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+ThemeChange.h"; sourceTree = "<group>"; };
+		4C18D97221BF5309006CFDD7 /* UIButton+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+ThemeChange.m"; sourceTree = "<group>"; };
+		4C18D97421BF61C9006CFDD7 /* UILabel+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+ThemeChange.h"; sourceTree = "<group>"; };
+		4C18D97521BF61C9006CFDD7 /* UILabel+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+ThemeChange.m"; sourceTree = "<group>"; };
+		4C2CA55521BA4AC7002407CA /* ThemeManage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThemeManage.h; sourceTree = "<group>"; };
+		4C2CA55621BA4AC7002407CA /* ThemeManage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThemeManage.m; sourceTree = "<group>"; };
+		4C2CA55821BA5447002407CA /* UIView+ThemeChange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+ThemeChange.h"; sourceTree = "<group>"; };
+		4C2CA55921BA5447002407CA /* UIView+ThemeChange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+ThemeChange.m"; sourceTree = "<group>"; };
+		4C41D84721B9250E00988A99 /* ChannelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChannelViewController.h; sourceTree = "<group>"; };
+		4C41D84821B9250E00988A99 /* ChannelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChannelViewController.m; sourceTree = "<group>"; };
 		4C6C738B21B7C0080037751F /* LySegmentMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LySegmentMenu.h; sourceTree = "<group>"; };
 		4C6C738D21B7C0080037751F /* NSString+CalculateFontSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CalculateFontSize.m"; sourceTree = "<group>"; };
 		4C6C738E21B7C0080037751F /* HeaderToolScrollBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderToolScrollBar.h; sourceTree = "<group>"; };
@@ -140,11 +161,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4C2CA54B21BA1C5A002407CA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4C2CA55821BA5447002407CA /* UIView+ThemeChange.h */,
+				4C2CA55921BA5447002407CA /* UIView+ThemeChange.m */,
+				4C18D95421BE3A96006CFDD7 /* UITableViewCell+ThemeChange.h */,
+				4C18D95521BE3A96006CFDD7 /* UITableViewCell+ThemeChange.m */,
+				4C18D95821BE41EB006CFDD7 /* UINavigationBar+ThemeChange.h */,
+				4C18D95921BE41EB006CFDD7 /* UINavigationBar+ThemeChange.m */,
+				4C18D97121BF5309006CFDD7 /* UIButton+ThemeChange.h */,
+				4C18D97221BF5309006CFDD7 /* UIButton+ThemeChange.m */,
+				4C18D97421BF61C9006CFDD7 /* UILabel+ThemeChange.h */,
+				4C18D97521BF61C9006CFDD7 /* UILabel+ThemeChange.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		4C6C738A21B7C0080037751F /* SegmentMenu */ = {
 			isa = PBXGroup;
 			children = (
-				4C6C738B21B7C0080037751F /* LySegmentMenu.h */,
 				4C6C738C21B7C0080037751F /* HeaderToolBar */,
+				4C6C738B21B7C0080037751F /* LySegmentMenu.h */,
 				4C6C739321B7C0080037751F /* LySegmentMenu.m */,
 			);
 			path = SegmentMenu;
@@ -153,12 +191,12 @@
 		4C6C738C21B7C0080037751F /* HeaderToolBar */ = {
 			isa = PBXGroup;
 			children = (
-				4C6C738D21B7C0080037751F /* NSString+CalculateFontSize.m */,
 				4C6C738E21B7C0080037751F /* HeaderToolScrollBar.h */,
+				4C6C739221B7C0080037751F /* HeaderToolScrollBar.m */,
+				4C6C739121B7C0080037751F /* UIColor+Hex.h */,
 				4C6C738F21B7C0080037751F /* UIColor+Hex.m */,
 				4C6C739021B7C0080037751F /* NSString+CalculateFontSize.h */,
-				4C6C739121B7C0080037751F /* UIColor+Hex.h */,
-				4C6C739221B7C0080037751F /* HeaderToolScrollBar.m */,
+				4C6C738D21B7C0080037751F /* NSString+CalculateFontSize.m */,
 			);
 			path = HeaderToolBar;
 			sourceTree = "<group>";
@@ -229,6 +267,8 @@
 				4CD2109F21B676470054AB6C /* RightViewController.m */,
 				4C6C739821B7C1FF0037751F /* ImportNewsViewController.h */,
 				4C6C739921B7C1FF0037751F /* ImportNewsViewController.m */,
+				4C41D84721B9250E00988A99 /* ChannelViewController.h */,
+				4C41D84821B9250E00988A99 /* ChannelViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -270,8 +310,11 @@
 		4CD2108A21B64BCE0054AB6C /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				4C2CA54B21BA1C5A002407CA /* Category */,
 				4C6C738A21B7C0080037751F /* SegmentMenu */,
 				4CD2108F21B64CC40054AB6C /* mainPch.pch */,
+				4C2CA55521BA4AC7002407CA /* ThemeManage.h */,
+				4C2CA55621BA4AC7002407CA /* ThemeManage.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -455,18 +498,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C18D97621BF61C9006CFDD7 /* UILabel+ThemeChange.m in Sources */,
 				4CD210A021B676470054AB6C /* RightViewController.m in Sources */,
 				4C6C739521B7C0080037751F /* UIColor+Hex.m in Sources */,
+				4C41D84921B9250E00988A99 /* ChannelViewController.m in Sources */,
 				4CD2109D21B664A70054AB6C /* LeftWindowTableViewCell.m in Sources */,
 				4C6C739A21B7C1FF0037751F /* ImportNewsViewController.m in Sources */,
+				4C18D97321BF5309006CFDD7 /* UIButton+ThemeChange.m in Sources */,
+				4C18D95621BE3A96006CFDD7 /* UITableViewCell+ThemeChange.m in Sources */,
+				4C2CA55A21BA5447002407CA /* UIView+ThemeChange.m in Sources */,
 				4C6C739621B7C0080037751F /* HeaderToolScrollBar.m in Sources */,
 				4C6C739421B7C0080037751F /* NSString+CalculateFontSize.m in Sources */,
+				4C2CA55721BA4AC7002407CA /* ThemeManage.m in Sources */,
 				4CD2109721B64DAD0054AB6C /* MainNewsViewController.m in Sources */,
 				4C6C73A321B8F4C70037751F /* MainNewsTableViewCell.m in Sources */,
 				4CD2106421B645B40054AB6C /* main.m in Sources */,
 				4C6C739721B7C0080037751F /* LySegmentMenu.m in Sources */,
 				4CD2109A21B654FC0054AB6C /* LeftViewController.m in Sources */,
 				4CD2105621B645B20054AB6C /* AppDelegate.m in Sources */,
+				4C18D95A21BE41EB006CFDD7 /* UINavigationBar+ThemeChange.m in Sources */,
 				4C6C739D21B8E6990037751F /* TopScrollView.m in Sources */,
 				4CD210A321B67B600054AB6C /* RightWindowTableViewCell.m in Sources */,
 				4CD2109421B64D8F0054AB6C /* PublicViewController.m in Sources */,

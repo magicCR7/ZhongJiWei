@@ -7,7 +7,7 @@
 //
 
 #define COLOR_BORDER_GRAY           [UIColor colorWithHexString:@"#dfdfdf"]// 浅边框颜色
-#define COLOR_INDICATOR             [UIColor colorWithHexString:@"#139CE6"]// 指示条的颜色
+#define COLOR_INDICATOR             DominantColor//[UIColor colorWithHexString:@"#139CE6"]// 指示条的颜色
 #define Color_DefaultFont_Black     [UIColor colorWithHexString:@"333333"]
 
 
@@ -21,6 +21,10 @@
 #import "NSString+CalculateFontSize.h"
 #import "UIColor+Hex.h"
 #import "HeaderToolScrollBar.h"
+#import "UIView+ThemeChange.h"
+#import "UIButton+ThemeChange.h"
+#import "UILabel+ThemeChange.h"
+
 
 @interface HeaderToolScrollBar ()
 @property (nonatomic ,assign) NSInteger titleCount;
@@ -35,8 +39,10 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+//        self.backgroundColor = DominantGrayColor;
+        [self NightWithType:UIViewColorType1];
         UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, View_Size_Height-0.7, View_Size_Width, 0.7)];
-        bottomLine.backgroundColor = COLOR_BORDER_GRAY;
+        bottomLine.backgroundColor = DominantGrayColor;
         [self addSubview:bottomLine];
         
         self.indicator = [[UIView alloc]init];
@@ -62,28 +68,30 @@
             CGFloat titleWidth = [title sizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(btnWidth, View_Size_Height-6)].width + 8;
             CGFloat titleHeight = [title sizeWithFont:[UIFont systemFontOfSize:16] maxSize:CGSizeMake(btnWidth, View_Size_Height-6)].height + 2;
             UIButton *touchBtn = [[UIButton alloc] initWithFrame:CGRectMake(i*btnWidth, 0, btnWidth, Button_Size_Height)];
-            touchBtn.backgroundColor = [UIColor whiteColor];
+            [touchBtn NightWithType:UIViewColorType1];
+//            touchBtn.backgroundColor = DominantGrayColor;
             touchBtn.tag = Base_TAG + i;
             [touchBtn addTarget:self action:@selector(touchButton:) forControlEvents:UIControlEventTouchUpInside];
             
             UILabel *titleLable = [[UILabel alloc] initWithFrame:CGRectMake((btnWidth-titleWidth)/2, (View_Size_Height-titleHeight)/2, titleWidth, titleHeight)];
-            titleLable.backgroundColor = [UIColor clearColor];
             titleLable.layer.cornerRadius = titleHeight / 2;
             titleLable.layer.masksToBounds = YES;
             titleLable.text = title;
-            titleLable.font = [UIFont systemFontOfSize:15];
+            titleLable.font = [UIFont systemFontOfSize:NormalFontSize];
             titleLable.textAlignment = NSTextAlignmentCenter;
-            [titleLable setTextColor:Color_DefaultFont_Black];
+            [titleLable NightTextType:LabelColorBlack];
+            titleLable.backgroundColor = [UIColor clearColor];
+//            [titleLable setTextColor:Color_DefaultFont_Black];
             
             [touchBtn addSubview:titleLable];
             [self addSubview:touchBtn];
             
             //默认选择第一个
             if (i == 0) {
-                titleLable.textColor = COLOR_INDICATOR;//[UIColor whiteColor];
+//                titleLable.textColor = COLOR_INDICATOR;//[UIColor whiteColor];
                 //                titleLable.backgroundColor = [UIColor orangeColor];
-                
-                self.indicator.frame = CGRectMake(0, Button_Size_Height, btnWidth, View_Size_Height - Button_Size_Height);
+                [titleLable NightTextType:LabelColorGray];
+                self.indicator.frame = CGRectMake(15, Button_Size_Height, btnWidth-30, View_Size_Height - Button_Size_Height);
             }
         }
         
@@ -102,7 +110,8 @@
             if (subButton.tag == sender.tag) {
                 //在这里拿到点击的button
                 UILabel *titleLab = subButton.subviews[0];
-                titleLab.textColor = COLOR_INDICATOR;//[UIColor whiteColor];
+                [titleLab NightTextType:LabelColorGray];
+                titleLab.backgroundColor = [UIColor clearColor];
                 //                titleLab.backgroundColor = [UIColor orangeColor];
                 
                 if (self.customDelegate) {
@@ -113,7 +122,13 @@
                 
             }else{
                 UILabel *titleLab = subButton.subviews[0];
-                titleLab.textColor = Color_DefaultFont_Black;//[UIColor blackColor];
+                [titleLab NightTextType:LabelColorBlack];
+//                if ([ThemeManage shareThemeManage].isNight) {
+//                    titleLab.textColor = RGB(82, 94, 123, 1);
+//                } else {
+//                    titleLab.textColor = [UIColor blackColor];
+//                }
+//                titleLab.textColor = [UIColor yellowColor];//[UIColor blackColor];
                 titleLab.backgroundColor = [UIColor clearColor];
             }
         }
@@ -125,7 +140,7 @@
     
     CGFloat Width = View_Size_Width/self.maxShowNum;
     [UIView animateWithDuration:0.2 animations:^{
-        self.indicator.frame = CGRectMake(Width * index, self.indicator.frame.origin.y, Width, self.indicator.frame.size.height);
+        self.indicator.frame = CGRectMake(Width * index+15, self.indicator.frame.origin.y, Width-30, self.indicator.frame.size.height);
     } completion:^(BOOL finished) {
     }];
 }

@@ -27,9 +27,6 @@
 
 - (void)setupViews {
     self.view.backgroundColor = [UIColor clearColor];
-    //加手势
-    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
-    [self.view addGestureRecognizer:singleTap];
 //    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:self.view.bounds];
 //    toolbar.barStyle = UIBarStyleBlackTranslucent;
 //    [self.view addSubview:toolbar];
@@ -48,6 +45,11 @@
         make.left.right.top.equalTo(self.mainView);
         make.height.equalTo(self.mainView.mas_width);
     }];
+    
+    //加手势
+    self.topImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
+    [self.topImageView addGestureRecognizer:singleTap];
     
     //TableView
     UITableView *tableView = [UITableView new];
@@ -98,9 +100,7 @@
         case 3: {
             cell.textLabel.text = @"反“四风”一键通";
             cell.detailTextLabel.text = @"(欢迎举报)";
-            //            [cell.imageView setImage:[UIImage imageNamed:@"collected"]];
-            //            CGSize itemSize = CGSizeMake(25, 25);
-            //            [self changeImageSize:itemSize andCell:cell];
+           
         }
             break;
         case 4: {
@@ -111,6 +111,13 @@
             break;
     }
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.showWebBlock) {
+        self.showWebBlock(indexPath.row);
+    }
 }
 
 - (void)dismiss {
